@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Admin Portal</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+
+</head>
+<body>
+
+    <div class="container">
+        <h3>Admin Portal</h3>
+        <hr>
+
+        <a th:href="@{/adminPortal/showFormForAdd}"
+           class="btn btn-primary btn-sm mb-3" >
+            Add New</a>
+
+        <table class = "table table-bordered table-striped">
+            <thead class ="table-dark">
+            <tr>
+                <th>ID</th>
+                <th>KEY</th>
+                <th>VALUE</th>
+            </tr>
+            </thead>
+
+            <tbody>
+                <tr th:each="tempKVP: ${kvps}">
+                    <td th:text="${tempKVP.id}"/>
+                    <td th:text="${tempKVP.keyName}"/>
+                    <td th:text="${tempKVP.value}"/>
+                </tr>
+            </tbody>
+
+        </table>
+
+
+    </div>
+
+</body>
+</html>
