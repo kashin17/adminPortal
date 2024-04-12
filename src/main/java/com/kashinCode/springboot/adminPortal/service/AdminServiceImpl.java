@@ -1,6 +1,7 @@
 package com.kashinCode.springboot.adminPortal.service;
 
 import com.kashinCode.springboot.adminPortal.dao.keyValuePairRepository;
+import com.kashinCode.springboot.adminPortal.entity.Environment;
 import com.kashinCode.springboot.adminPortal.entity.KeyValuePair;
 import org.springframework.stereotype.Service;
 
@@ -19,6 +20,21 @@ public class AdminServiceImpl implements AdminService{
     public List<KeyValuePair> getAll() {
         return kvpRepository.findAll();
     }
+
+    @Override
+    public List<KeyValuePair> findByEnvironmentId(Long environmentId) {
+        return kvpRepository.findByEnvironmentId(environmentId);
+    }
+
+    @Override
+    public List<KeyValuePair> findByEnvironment(Environment Env) {
+        return kvpRepository.findByEnvironment(Env);
+    }
+
+//    @Override
+//    public List<KeyValuePair> findByEnvironmentIdLike(String environmentId) {
+//        return kvpRepository.findByEnvironmentIdLike(environmentId);
+//    }
 
     @Override
     public KeyValuePair getById(long theId) {
@@ -44,6 +60,16 @@ public class AdminServiceImpl implements AdminService{
 
     public boolean existByKeyName(String theKey){
         return kvpRepository.existsByKeyName(theKey);
+    }
+
+    @Override
+    public boolean existsByEnvironmentIdAndKeyName(Long environmentId, String keyName) {
+        return kvpRepository.existsByEnvironmentIdAndKeyName(environmentId, keyName);
+    }
+
+    @Override
+    public boolean existsByEnvironmentId(Long environmentId) {
+        return kvpRepository.existsByEnvironmentId(environmentId);
     }
 
     @Override

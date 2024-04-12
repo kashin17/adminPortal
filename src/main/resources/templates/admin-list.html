@@ -10,10 +10,10 @@
 <body>
 
     <div class="container">
-        <h3>Admin Portal</h3>
+        <h3 th:text="'Environment: ' + ${ename}"/>
         <hr>
 
-        <a th:href="@{/adminPortal/showFormForAdd}"
+        <a th:href="@{/adminPortal/showFormForAdd(EnvId=${EnvId})}"
            class="btn btn-primary btn-sm mb-3" >
             Add New</a>
 
@@ -23,6 +23,7 @@
                 <th>ID</th>
                 <th>KEY</th>
                 <th>VALUE</th>
+                <th>ACTION</th>
             </tr>
             </thead>
 
@@ -31,13 +32,29 @@
                     <td th:text="${tempKVP.id}"/>
                     <td th:text="${tempKVP.keyName}"/>
                     <td th:text="${tempKVP.value}"/>
+                    <td>
+                        <!-- Add "update" Button/link -->
+                        <a th:href="@{/adminPortal/showFormForUpdate(kvpId=${tempKVP.id})}"
+                           class="btn btn-info btn-sm">
+                        Update
+                        </a>
+                        <!-- Add "delete" Button/link -->
+                        <a th:href="@{/adminPortal/delete(kvpId=${tempKVP.id})}"
+                           class="btn btn-danger btn-sm"
+                           onclick="return confirm('Are you sure you want to delete this employee?')">
+                            Delete
+                        </a>
+                    </td>
                 </tr>
             </tbody>
 
         </table>
-
-
+        <hr>
+        <a th:href="@{/list}" class="btn btn-primary btn-sm mb-3" >
+            Home
+        </a>
     </div>
+
 
 </body>
 </html>

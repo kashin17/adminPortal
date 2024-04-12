@@ -22,9 +22,15 @@
                 <span th:if="${#fields.hasErrors('keyName')}" th:errors="*{keyName}" class="form-text col-auto" ></span>
                 </div>
                 <div class="row g-3 align-items-center">
-                <input type="text" th:field="*{value}" required
-                       class="form-control mb-4 w-25 form-control "  placeholder="Value">
+                <input type="text" th:field="*{value}"  required
+                       class="form-control mb-4 w-25 form-control "  placeholder="Value" />
                 <span th:if="${#fields.hasErrors('value')}" th:errors="*{value}" class="form-text col-auto" ></span>
+                </div>
+                <div class="row g-3 align-items-center">
+                    <input type="hidden"  th:field="*{environment}"  required
+                           class="form-control mb-4 w-25 form-control " />
+                    <span th:if="${#fields.hasErrors('environment')}" th:errors="*{environment}" class="form-text col-auto" ></span>
+                    <input type="hidden" th:field="*{id}">
                 </div>
 
                 <button type="submit" class="btn btn-info col-2">Save</button>
@@ -32,7 +38,7 @@
             </form>
 
             <hr>
-            <a th:href="@{/adminPortal/list}">Cancel</a>
+            <a th:href="@{/adminPortal/list(EnvId=${EnvId})}">Cancel</a>
         </div>
 </body>
 </html>

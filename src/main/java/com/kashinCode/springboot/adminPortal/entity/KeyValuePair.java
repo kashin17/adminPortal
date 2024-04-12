@@ -5,24 +5,38 @@ import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 
 @Entity
-@Table(name = "key_value_pairs")
+//@Table(name = "key_value_pairs")
 public class KeyValuePair {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id")
+//    @Column(name = "id")
     private long id;
 
-    @Column(name = "key_name")
+//    @Column(name = "key_name")
     @NotNull(message = "is Required")
     @Size(min = 1,message = "is Required")
     private String keyName ="";
-    @Column(name = "value")
+
+
+//    @Column(name = "value")
     @NotNull(message = "is Required")
     @Size(min=1,message = "is Required")
     private String value ="";
 
+    @ManyToOne
+    private Environment environment;
+
+
     public KeyValuePair() {
 
+    }
+
+    public Environment getEnvironment() {
+        return environment;
+    }
+
+    public void setEnvironment(Environment environment) {
+        this.environment = environment;
     }
 
     public long getId() {
@@ -47,5 +61,11 @@ public class KeyValuePair {
 
     public void setValue(String value) {
         this.value = value;
+    }
+
+    public long getEnvId(Environment Env){
+        long envID = Env.getId();
+
+        return envID;
     }
 }
